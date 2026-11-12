@@ -1,153 +1,103 @@
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+function change(){
+    document.getElementById("naslov").textContent="matej"
+}
 
-import {
-    getDatabase,
-    ref,
-    set,
-    onValue
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
+let x = Number(localStorage.getItem("kolicina")) || 0;
+document.getElementById("input").value=x;
 
-
-// FIREBASE CONFIGURATION
-
-const firebaseConfig = {
-    apiKey: "AIzaSyAoJNttoKqneiWkRtKZqwbtjFAwOz-LsK8",
-    authDomain: "magacin-f5bff.firebaseapp.com",
-    databaseURL: "https://magacin-f5bff-default-rtdb.firebaseio.com",
-    projectId: "magacin-f5bff",
-    storageBucket: "magacin-f5bff.firebasestorage.app",
-    messagingSenderId: "21280506209",
-    appId: "1:21280506209:web:62552f1e8b360948e80520",
-    measurementId: "G-17MQNY09FD"
-};
-
-
-// CONNECT TO FIREBASE
-
-const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
-
-const inventoryRef = ref(database, "magacin");
-
-
-// INVENTORY DATA
-
-let inventory = {
-    kolicina: 0,
-    kolicina1: 0,
-    malavoda: 0,
-    golema_gazirana: 0
-};
-
-
-// HTML INPUTS
-
-const inputs = {
-    kolicina: document.getElementById("input"),
-    kolicina1: document.getElementById("input1"),
-    malavoda: document.getElementById("malavoda"),
-    golema_gazirana: document.getElementById("golema_gazirana")
-};
-
-
-// UPDATE HTML
-
-function updateHTML() {
-
-    for (let key in inventory) {
-        inputs[key].value = inventory[key];
+function change1(){
+    if (x > 0) {
+        x--;
     }
+    document.getElementById("input").value=x;
+    localStorage.setItem("kolicina", x);
+    window.saveFirebase("kolicina", x);
+}
 
+function change2(){
+    x++;
+    document.getElementById("input").value=x;
+    localStorage.setItem("kolicina", x);
+    window.saveFirebase("kolicina", x);
 }
 
 
-// SAVE TO FIREBASE
+let y = Number(localStorage.getItem("kolicina1")) || 0;
+document.getElementById("input1").value=y;
 
-function saveData() {
-
-    set(inventoryRef, inventory)
-        .catch(error => {
-            console.error("Firebase save error:", error);
-        });
-
-}
-
-
-// RECEIVE DATA FROM FIREBASE
-
-onValue(inventoryRef, (snapshot) => {
-
-    if (snapshot.exists()) {
-
-        inventory = {
-            ...inventory,
-            ...snapshot.val()
-        };
-
-        updateHTML();
-
-    } else {
-
-        saveData();
-
+function change3(){
+    if (y > 0) {
+        y--;
     }
+    document.getElementById("input1").value=y;
+    localStorage.setItem("kolicina1", y);
+    window.saveFirebase("kolicina1", y);
+}
 
-}, (error) => {
-
-    console.error("Firebase read error:", error);
-
-});
-
-
-// CHANGE QUANTITY
-
-function changeQuantity(key, amount) {
-
-    let newValue = Math.max(0, inventory[key] + amount);
-
-    inventory[key] = newValue;
-
-    updateHTML();
-
-    saveData();
-
+function change4(){
+    y++;
+    document.getElementById("input1").value=y;
+    localStorage.setItem("kolicina1", y);
+    window.saveFirebase("kolicina1", y);
 }
 
 
-// BUTTONS
+let malavoda = Number(localStorage.getItem("malavoda")) || 0;
+document.getElementById("malavoda").value=malavoda;
 
-document.getElementById("minus1").addEventListener("click", () => {
-    changeQuantity("kolicina", -1);
-});
+function change5(){
+    if (malavoda > 0) {
+        malavoda--;
+    }
+    document.getElementById("malavoda").value=malavoda;
+    localStorage.setItem("malavoda", malavoda);
+    window.saveFirebase("malavoda", malavoda);
+}
 
-document.getElementById("plus1").addEventListener("click", () => {
-    changeQuantity("kolicina", 1);
-});
-
-
-document.getElementById("minus2").addEventListener("click", () => {
-    changeQuantity("kolicina1", -1);
-});
-
-document.getElementById("plus2").addEventListener("click", () => {
-    changeQuantity("kolicina1", 1);
-});
-
-
-document.getElementById("minus3").addEventListener("click", () => {
-    changeQuantity("malavoda", -1);
-});
-
-document.getElementById("plus3").addEventListener("click", () => {
-    changeQuantity("malavoda", 1);
-});
+function change6(){
+    malavoda++;
+    document.getElementById("malavoda").value=malavoda;
+    localStorage.setItem("malavoda", malavoda);
+    window.saveFirebase("malavoda", malavoda);
+}
 
 
-document.getElementById("minus4").addEventListener("click", () => {
-    changeQuantity("golema_gazirana", -1);
-});
+let golema_gazirana = Number(localStorage.getItem("golema_gazirana")) || 0;
+document.getElementById("golema_gazirana").value=golema_gazirana;
 
-document.getElementById("plus4").addEventListener("click", () => {
-    changeQuantity("golema_gazirana", 1);
-});
+function change7(){
+    if (golema_gazirana > 0) {
+        golema_gazirana--;
+    }
+    document.getElementById("golema_gazirana").value=golema_gazirana;
+    localStorage.setItem("golema_gazirana", golema_gazirana);
+    window.saveFirebase("golema_gazirana", golema_gazirana);
+}
+
+function change8(){
+    golema_gazirana++;
+    document.getElementById("golema_gazirana").value=golema_gazirana;
+    localStorage.setItem("golema_gazirana", golema_gazirana);
+    window.saveFirebase("golema_gazirana", golema_gazirana);
+}
+
+
+// Receive data from Firebase
+window.loadFirebaseData = function(data) {
+
+    x = Number(data.kolicina) || 0;
+    y = Number(data.kolicina1) || 0;
+    malavoda = Number(data.malavoda) || 0;
+    golema_gazirana = Number(data.golema_gazirana) || 0;
+
+    document.getElementById("input").value = x;
+    document.getElementById("input1").value = y;
+    document.getElementById("malavoda").value = malavoda;
+    document.getElementById("golema_gazirana").value = golema_gazirana;
+
+    localStorage.setItem("kolicina", x);
+    localStorage.setItem("kolicina1", y);
+    localStorage.setItem("malavoda", malavoda);
+    localStorage.setItem("golema_gazirana", golema_gazirana);
+};
