@@ -8,24 +8,30 @@ import {
     onValue
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
 
+// Firebase configuration
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    databaseURL: "https://magacin-f5bff-default-rtdb.firebaseio.com/",
+    apiKey: "AIzaSyAoJNttoKqneiWkRtKZqwbtjFAwOz-LsK8",
+    authDomain: "magacin-f5bff.firebaseapp.com",
+    databaseURL: "https://magacin-f5bff-default-rtdb.firebaseio.com",
     projectId: "magacin-f5bff",
-    appId: "YOUR_APP_ID"
+    storageBucket: "magacin-f5bff.firebasestorage.app",
+    messagingSenderId: "21280506209",
+    appId: "1:21280506209:web:62552f1e8b360948e80520",
+    measurementId: "G-17MQNY09FD"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
-// Save data to Firebase
+// Save data
 window.saveFirebase = function(key, value) {
-    set(ref(database, "magacin/" + key), value);
+    return set(ref(database, "magacin/" + key), value);
 };
 
-// Load data from Firebase
+// Load data
 onValue(ref(database, "magacin"), (snapshot) => {
+
     if (snapshot.exists()) {
         window.loadFirebaseData(snapshot.val());
     } else {
@@ -36,4 +42,7 @@ onValue(ref(database, "magacin"), (snapshot) => {
             golema_gazirana: 0
         });
     }
+
+}, (error) => {
+    console.error("Firebase error:", error);
 });
