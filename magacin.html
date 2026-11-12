@@ -7,27 +7,59 @@
     <title>Document</title>
 </head>
 <body>
-    <p>Колицина (гајби)</p>
-    <p>Кoka kola 0.25Л</p>
-    <input id="input" type="number" value="0">
-    <button onclick="change1()">-1</button>
-    <button onclick="change2()">+1</button>
-    <hr>
-    <p>Вода 0.75Л</p>
-    <input id="input1" type="number" value="0">
-    <button onclick="change3()">-1</button>
-    <button onclick="change4()">+1</button>
-    <hr>
-    <p>Вода 0.25Л</p>
-    <input id="malavoda" type="number" value="0">
-    <button onclick="change5()">-1</button>
-    <button onclick="change6()">+1</button>
-    <hr>
-    <p>Газирана вода 0.75Л</p>
-    <input id="golema_gazirana" type="number" value="0">
-    <button onclick="change7()">-1</button>
-    <button onclick="change8()">+1</button>
-    <hr>
+    <div class="inventory">
+
+    <h1>ИНВЕНТАР</h1>
+
+    <div class="product">
+        <div class="product-info">
+            <p>Кока кола 0.25Л</p>
+            <span>Гајби</span>
+        </div>
+        <div class="controls">
+            <button onclick="change1()">−1</button>
+            <input id="input" type="number" value="0">
+            <button onclick="change2()">+1</button>
+        </div>
+    </div>
+
+    <div class="product">
+        <div class="product-info">
+            <p>Вода 0.75Л</p>
+            <span>Гајби</span>
+        </div>
+        <div class="controls">
+            <button onclick="change3()">−1</button>
+            <input id="input1" type="number" value="0">
+            <button onclick="change4()">+1</button>
+        </div>
+    </div>
+
+    <div class="product">
+        <div class="product-info">
+            <p>Вода 0.25Л</p>
+            <span>Гајби</span>
+        </div>
+        <div class="controls">
+            <button onclick="change5()">−1</button>
+            <input id="malavoda" type="number" value="0">
+            <button onclick="change6()">+1</button>
+        </div>
+    </div>
+
+    <div class="product">
+        <div class="product-info">
+            <p>Газирана вода 0.75Л</p>
+            <span>Гајби</span>
+        </div>
+        <div class="controls">
+            <button onclick="change7()">−1</button>
+            <input id="golema_gazirana" type="number" value="0">
+            <button onclick="change8()">+1</button>
+        </div>
+    </div>
+
+</div>
     
 
 
