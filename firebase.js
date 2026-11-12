@@ -1,6 +1,9 @@
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 
+import { initializeApp } from "firebase/app";
+
+
 import {
     getDatabase,
     ref,
@@ -15,7 +18,8 @@ const firebaseConfig = {
     projectId: "magacin-f5bff",
     storageBucket: "magacin-f5bff.firebasestorage.app",
     messagingSenderId: "21280506209",
-    appId: "1:21280506209:web:62552f1e8b360948e80520"
+    appId: "1:21280506209:web:62552f1e8b360948e80520",
+    measurementId: "G-17MQNY09FD"
 };
 
 const app = initializeApp(firebaseConfig);
