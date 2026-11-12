@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="mk">
+<head>
+    <link rel="stylesheet" href="magacin.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Колицина (гајби)</p>
+    <p>Кoka kola 0.25Л</p>
+    <input id="input" type="number" value="0">
+    <button onclick="change1()">-1</button>
+    <button onclick="change2()">+1</button>
+    <hr>
+    <p>Вода 0.75Л</p>
+    <input id="input1" type="number" value="0">
+    <button onclick="change3()">-1</button>
+    <button onclick="change4()">+1</button>
+    <hr>
+    <p>Вода 0.25Л</p>
+    <input id="malavoda" type="number" value="0">
+    <button onclick="change5()">-1</button>
+    <button onclick="change6()">+1</button>
+    <hr>
+    <p>Газирана вода 0.75Л</p>
+    <input id="golema_gazirana" type="number" value="0">
+    <button onclick="change7()">-1</button>
+    <button onclick="change8()">+1</button>
+    <hr>
+    
+
+ 
+<script src="script.js" defer></script>    
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import { getDatabase } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
+
+const firebaseConfig = {
+    databaseURL: "https://magacin-f5bff-default-rtdb.firebaseio.com/"
+};
+
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+</script>
+</body>
+</html>
