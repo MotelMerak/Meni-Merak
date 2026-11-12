@@ -8,7 +8,6 @@ import {
     onValue
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
 
-// Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyAoJNttoKqneiWkRtKZqwbtjFAwOz-LsK8",
     authDomain: "magacin-f5bff.firebaseapp.com",
@@ -16,20 +15,19 @@ const firebaseConfig = {
     projectId: "magacin-f5bff",
     storageBucket: "magacin-f5bff.firebasestorage.app",
     messagingSenderId: "21280506209",
-    appId: "1:21280506209:web:62552f1e8b360948e80520",
-    measurementId: "G-17MQNY09FD"
+    appId: "1:21280506209:web:62552f1e8b360948e80520"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
-// Save data
+// Save values
 window.saveFirebase = function(key, value) {
-    return set(ref(database, "magacin/" + key), value);
+    set(ref(database, "magacin/" + key), value)
+        .catch(error => console.error("Save error:", error));
 };
 
-// Load data
+// Receive values
 onValue(ref(database, "magacin"), (snapshot) => {
 
     if (snapshot.exists()) {
@@ -40,7 +38,7 @@ onValue(ref(database, "magacin"), (snapshot) => {
             kolicina1: 0,
             malavoda: 0,
             golema_gazirana: 0
-        });
+        }).catch(error => console.error(error));
     }
 
 }, (error) => {
